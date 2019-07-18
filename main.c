@@ -13,39 +13,37 @@ int main()
         printf("table creation ok\n");
 
     struct stat array[3];
-    int i;
-    for(i = 0; i<3; i++){
-        array[i] = struct stat filestat;
+    int i = 0;
+    void addEntry(struct stat filestat){
+        array[i] = filestat;
+        i++;
         }
-
-
-
 
 void addToHT (char *pathname){
-    static int index = 0;
-
+    struct stat filestat;
     int statStatus;
-    if((statStatus = stat(pathname, &array[index])) != 0){
-        fprintf(stderr, "errore con il metodo stat");
+    if((statStatus = stat(pathname, &filestat)) != 0){
+        fprintf(stderr, "errore con il metodo stat\n");
         exit(1);
         }
+    addEntry(filestat);
 
-    printf("file serial number = %ld", array[index].st_ino);
+    printf("file serial number = %ld\n", filestat.st_ino);
 
-    if((hashtable_add(table, pathname, array[index])) != CC_OK){
-        fprintf(stderr, "errore nell'inserire la coppia in tabella");
+    if((hashtable_add(table, pathname, &filestat)) != CC_OK){
+        fprintf(stderr, "errore nell'inserire la coppia in tabella\n");
         exit(1);
         }
-
+/*
     void *value;
     if((hashtable_get(table, pathname, &value) != CC_OK)){
         fprintf(stderr, "errore con il metodo get");
         exit(1);
         }
 
-    printf("file serial number = %d", value.st_ino);
+    printf("file serial number = %d", value->st_ino);
 
-    index++;
+    index++;*/
 }
 
     addToHT("/home/andrea/Scrivania/file2");

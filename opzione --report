@@ -10,8 +10,8 @@ void report( int numberOfFiles, clock_t start, clock_t end){
         maxLength = (((struct stat*) entry -> value )-> st_size);
         }
     // stampo i dati raccolti
-    printf("Report")
-    printf("1) numero di file elaborati: %d",numberOfFiles);
+    printf("Report\n")
+    printf("1) numero di file elaborati: %d\n",numberOfFiles);
     printf("2) tempo di elaborazione: %fms\n",totalTime);
-    printf("3) dimensione massima del file: %ld",maxLength);
+    printf("3) dimensione massima del file: %ld\n",maxLength);
     }

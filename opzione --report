@@ -1,7 +1,6 @@
-void report( int numberOfFiles, long start){
+void report( int numberOfFiles, clock_t start, clock_t end){
     // calcolo il tempo di elaborazione
-    long end = clock();
-    long elaborationTime = (start-end)/CLOCKS_PER_SEC;
+    double totalTime = ((double)(end-start))/CLOCKS_PER_SEC;;
     // calcolo la dimensione massima
     HashTableIter hti;
     hashtable_iter_init(&hti, table);
@@ -11,7 +10,8 @@ void report( int numberOfFiles, long start){
         maxLength = (((struct stat*) entry -> value )-> st_size);
         }
     // stampo i dati raccolti
-    printf("numero di file elaborati: %d",numberOfFiles);
-    printf("tempo di elaborazione: %ld\n",elabTime);
-    printf("dimensione massima del file: %ld",maxLength);
+    printf("Report")
+    printf("1) numero di file elaborati: %d",numberOfFiles);
+    printf("2) tempo di elaborazione: %fms\n",totalTime);
+    printf("3) dimensione massima del file: %ld",maxLength);
     }
